@@ -48,5 +48,18 @@
       container.appendChild(document.createElement("br"));
     });
   </script>
+
+  <script>
+    const postCount = 1;
+    const container = document.getElementById("postList");
+    for (let i = 1; i <= postCount; i++) {
+      const a = document.createElement("a");
+      a.href = `${i}.html`;
+      a.className = "post-link";
+      a.textContent = "+ #" + i;
+      container.appendChild(a);
+      container.appendChild(document.createElement("br"));
+    }
+  </script>
 </body>
 </html>
