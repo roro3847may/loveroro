@@ -126,3 +126,7 @@ body.later .container p {
 body.later #comments p {
   color: #ffeb99 !important;
 }
+
+body.sooner #comments p {
+  color: #ffeb99 !important;
+}
