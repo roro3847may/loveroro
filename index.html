@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>loveroro</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/style.css">
+  <script type="module" src="js/main.js" defer></script>
+</head>
+<body class="sooner">
+  <header id="site-header"></header>
+  <script>
+    fetch("header.html").then(r=>r.text()).then(h=>{ document.getElementById("site-header").innerHTML = h; });
+  </script>
+
+  <div class="container">
+    <h1>남은 시간</h1>
+    <p id="countdown"></p>
+    <p id="baseDate"></p>
+  </div>
+</body>
+</html>

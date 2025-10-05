@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>-</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body class="sooner">
+  <header id="site-header"></header>
+  <script>
+    fetch("../../header.html").then(r=>r.text()).then(h=>{ document.getElementById("site-header").innerHTML = h; });
+  </script>
+
+  <div class="container">
+    <h1>-</h1>
+    <div id="postList"></div>
+  </div>
+
+  <script>
+    const container = document.getElementById("postList");
+    const posts = [];
+    for (let i = 1; ; i++) {
+      const url = `${i}.html`;
+      const xhr = new XMLHttpRequest();
+      xhr.open("HEAD", url, false);
+      xhr.send();
+      if (xhr.status === 200) posts.push(url);
+      else break;
+    }
+    posts.forEach((url, idx) => {
+      const a = document.createElement("a");
+      a.href = url;
+      a.className = "post-link";
+      a.textContent = "- #" + (idx + 1);
+      container.appendChild(a);
+      container.appendChild(document.createElement("br"));
+    });
+  </script>
+</body>
+</html>

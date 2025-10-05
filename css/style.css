@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&family=Gowun+Dodum&display=swap');
+
+/* Base layout */
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  padding: 0;
+  background: #0a0a0a;
+  color: #e0e0e0;
+  font-family: 'Noto Sans KR', sans-serif;
+  line-height: 1.6;
+}
+
+/* Header (loaded from header.html) */
+header { background: transparent; padding: 0; }
+.site-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  padding: 1rem 1.2rem;
+}
+.nav-group { display: flex; gap: 2rem; }
+.nav-btn, .home-btn {
+  font-size: 1.35rem;
+  font-weight: 700;
+  text-decoration: none;
+  padding: 0.25em 0.5em;
+  border-radius: 8px;
+  transition: opacity 0.15s ease;
+  color: currentColor;
+}
+.nav-btn:hover, .home-btn:hover { opacity: 0.7; }
+.nav-minus { color: #cccccc; }
+.nav-plus  { color: #ffeb99; }
+
+.container {
+  max-width: 720px;
+  margin: 2rem auto;
+  padding: 0 1.2rem;
+  text-align: center;
+}
+
+/* Main countdown */
+#countdown { font-size: 1.6rem; margin-top: 1rem; letter-spacing: -0.4px; }
+#baseDate  { font-size: 1rem; color: #888; margin-top: 0.4rem; }
+
+/* Post list */
+.post-link {
+  display: inline-block;
+  font-size: 1.05rem;
+  text-decoration: none;
+  color: #e0e0e0;
+  margin: 4px 0;
+  transition: opacity 0.2s ease;
+}
+.post-link:hover { opacity: 0.75; }
+
+/* Comments input */
+#comments { margin-top: 1.5rem; text-align: left; }
+#commentInput {
+  width: 70%;
+  padding: 0.5em;
+  font-size: 1rem;
+  border: 1px solid #444;
+  background: #111;
+  color: #eee;
+  border-radius: 4px;
+}
+#commentButton {
+  background: #222;
+  color: #ffeb99;
+  border: none;
+  padding: 0.5em 1em;
+  margin-left: 0.5em;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+#commentButton:hover { background: #ffeb99; color: #000; }
+
+/* Token (always white) */
+.adjust-token {
+  text-align: right;
+  color: #e0e0e0;
+  font-size: 0.9rem;
+  margin: 1rem 0 0.5rem 0;
+  opacity: 0.9;
+}
+
+/* Content rules */
+.post-content { text-align: left; }
+body.later .post-content { font-family: 'Gowun Dodum', sans-serif; }
+body.later .post-content p { color: #ffeb99; }
+
+/* Comments '사랑해' highlight ONLY in + posts */
+body.later #comments p .love-word { color: #ffeb99; }
+body.sooner #comments p .love-word { color: #e0e0e0; }
+
+/* Responsive */
+@media (max-width: 600px) {
+  .site-nav { gap: 1.25rem; }
+  .nav-group { gap: 1.25rem; }
+  .nav-btn, .home-btn { font-size: 1.15rem; }
+  .container { padding: 0 1rem; }
+  #countdown { font-size: 1.4rem; }
+}

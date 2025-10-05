@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<!-- shared header -->
+<nav class="site-nav">
+  <a id="homeLink" class="home-btn" href="#">ㅈㅣㅂ</a>
+  <div class="nav-group">
+    <a id="minusLink" class="nav-btn nav-minus" href="#">-</a>
+    <a id="plusLink" class="nav-btn nav-plus" href="#">+</a>
+  </div>
+</nav>
+<script>
+(function() {
+  var path = location.pathname.replace(/\/+/, '/');
+  var depthPrefix = path.indexOf('/posts/') !== -1 ? '../../' : '';
+  document.getElementById('homeLink').href  = depthPrefix + 'index.html';
+  document.getElementById('minusLink').href = depthPrefix + 'posts/sooner/index.html';
+  document.getElementById('plusLink').href  = depthPrefix + 'posts/later/index.html';
+})();
+</script>
