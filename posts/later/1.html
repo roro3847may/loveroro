@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>+ #1</title>
+  <link rel="stylesheet" href="../../css/style.css">
+  <script type="module" src="../../js/firebase.js"></script>
+</head>
+<body class="later">
+  <header id="site-header"></header>
+  <script>
+    fetch("../../header.html")
+      .then(r => r.text())
+      .then(h => { document.getElementById("site-header").innerHTML = h; });
+  </script>
+
+  <div class="container">
+    <h1>+ #1</h1>
+    <p>
+코딩하면서 나오는 도파민~ +1d<br>
+<br>
+내가 만든 게임 사이트에 광고를 올리겠다는 의지~ +1d<br>
+<br>
+나를 사랑해주는 사람이 많을거라는 희망~ +3d
+    </p>
+
+    <p class="adjust-token">+5</p>
+    <hr>
+    <h3>댓글</h3>
+    <div id="comments"></div>
+    <input type="text" id="commentInput" placeholder="‘사랑해’만 입력할 수 있습니다." maxlength="3">
+    <button id="commentButton">전송</button>
+  </div>
+
+  <script type="module">
+    import { db, ref, push, get, set, onValue } from "../../js/firebase.js";
+    const commentsDiv = document.getElementById("comments");
+    const input = document.getElementById("commentInput");
+    const button = document.getElementById("commentButton");
+    const commentsRef = ref(db, "comments");
+
+    function renderComments(data) {
+      commentsDiv.innerHTML = "";
+      let idx = 1;
+      if (data) {
+        Object.values(data).forEach((text) => {
+          const p = document.createElement("p");
+          p.innerText = `익명${idx++}: ${text}`;
+          commentsDiv.appendChild(p);
+        });
+      }
+    }
+
+    onValue(commentsRef, (snapshot) => {
+      renderComments(snapshot.val());
+    });
+
+    button.addEventListener("click", () => {
+      const val = input.value.trim();
+      if (val !== "사랑해") {
+        alert("‘사랑해’만 입력할 수 있습니다.");
+        return;
+      }
+      push(commentsRef, val);
+      const countRef = ref(db, "loveCount");
+      get(countRef).then((snap) => {
+        const newCount = (snap.val() || 0) + 1;
+        set(countRef, newCount);
+      });
+      input.value = "";
+    });
+  </script>
+</body>
+</html>
