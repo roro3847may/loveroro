@@ -40,42 +40,47 @@
   </div>
 
   <script type="module">
-    import { db, ref, push, get, set, onValue } from "../../js/firebase.js";
-    const commentsDiv = document.getElementById("comments");
-    const input = document.getElementById("commentInput");
-    const button = document.getElementById("commentButton");
-    const commentsRef = ref(db, "comments");
+  import { db, ref, push, get, set, onValue } from "../../js/firebase.js";
 
-    function renderComments(data) {
-      commentsDiv.innerHTML = "";
-      let idx = 1;
-      if (data) {
-        Object.values(data).forEach((text) => {
-          const p = document.createElement("p");
-          p.innerText = `익명${idx++}: ${text}`;
-          commentsDiv.appendChild(p);
-        });
-      }
-    }
+  const commentsDiv = document.getElementById("comments");
+  const input = document.getElementById("commentInput");
+  const button = document.getElementById("commentButton");
 
-    onValue(commentsRef, (snapshot) => {
-      renderComments(snapshot.val());
-    });
+  const pathParts = location.pathname.split("/");
+  const postId = pathParts.slice(-1)[0].replace(".html", "");
+  const category = pathParts.includes("later") ? "later" : "sooner";
+  const commentsRef = ref(db, `comments/${category}-${postId}`);
 
-    button.addEventListener("click", () => {
-      const val = input.value.trim();
-      if (val !== "사랑해") {
-        alert("‘사랑해’만 입력할 수 있습니다.");
-        return;
-      }
-      push(commentsRef, val);
-      const countRef = ref(db, "loveCount");
-      get(countRef).then((snap) => {
-        const newCount = (snap.val() || 0) + 1;
-        set(countRef, newCount);
+  function renderComments(data) {
+    commentsDiv.innerHTML = "";
+    let idx = 1;
+    if (data) {
+      Object.values(data).forEach((text) => {
+        const p = document.createElement("p");
+        p.innerText = `익명${idx++}: ${text}`;
+        commentsDiv.appendChild(p);
       });
-      input.value = "";
+    }
+  }
+
+  onValue(commentsRef, (snapshot) => {
+    renderComments(snapshot.val());
+  });
+
+  button.addEventListener("click", () => {
+    const val = input.value.trim();
+    if (val !== "사랑해") {
+      alert("‘사랑해’만 입력할 수 있습니다.");
+      return;
+    }
+    push(commentsRef, val);
+    const countRef = ref(db, "loveCount");
+    get(countRef).then((snap) => {
+      const newCount = (snap.val() || 0) + 1;
+      set(countRef, newCount);
     });
+    input.value = "";
+  });
   </script>
 </body>
 </html>
