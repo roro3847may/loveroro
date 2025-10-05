@@ -30,14 +30,14 @@ header { background: transparent; padding: 0; }
   padding: 0.25em 0.5em;
   border-radius: 8px;
   transition: opacity 0.15s ease;
-  color: #ffeb99; /* +와 − 동일 색상 */
+  color: #ffffff; /* +와 − 동일 색상 */
   font-family: 'Noto Sans KR', sans-serif;
 }
 .nav-btn:hover, .home-btn:hover { opacity: 0.7; }
 
 /* 동일 스타일 적용 */
 .nav-minus, .nav-plus {
-  color: #ffeb99;
+  color: #ffffff;
 }
 
 
