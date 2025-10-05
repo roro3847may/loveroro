@@ -116,3 +116,13 @@ body.later .site-nav .nav-btn,
 body.later .site-nav .home-btn {
   color: #ffffff !important;
 }
+/* +카테고리 전체 텍스트 노란색 */
+body.later .post-content,
+body.later .container p {
+  color: #ffeb99 !important;
+}
+
+/* +카테고리 댓글의 ‘사랑해’ 단어 노란색 */
+body.later #comments p {
+  color: #ffeb99 !important;
+}

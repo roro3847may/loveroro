@@ -9,7 +9,18 @@
 <body class="later">
   <header id="site-header"></header>
   <script>
-    fetch("../../header.html").then(r=>r.text()).then(h=>{ document.getElementById("site-header").innerHTML = h; });
+    fetch("../../header.html")
+      .then(r => r.text())
+      .then(h => {
+        const headerEl = document.getElementById("site-header");
+        headerEl.innerHTML = h;
+        headerEl.querySelectorAll("script").forEach((oldScript) => {
+          const newScript = document.createElement("script");
+          if (oldScript.src) newScript.src = oldScript.src;
+          else newScript.textContent = oldScript.textContent;
+          document.body.appendChild(newScript);
+        });
+      });
   </script>
 
   <div class="container">
@@ -36,19 +47,6 @@
       container.appendChild(a);
       container.appendChild(document.createElement("br"));
     });
-  </script>
-
-  <script>
-    const postCount = 1;
-    const container = document.getElementById("postList");
-    for (let i = 1; i <= postCount; i++) {
-      const a = document.createElement("a");
-      a.href = `${i}.html`;
-      a.className = "post-link";
-      a.textContent = "+ #" + i;
-      container.appendChild(a);
-      container.appendChild(document.createElement("br"));
-    }
   </script>
 </body>
 </html>

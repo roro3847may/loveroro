@@ -10,7 +10,19 @@
 <body class="sooner">
   <header id="site-header"></header>
   <script>
-    fetch("header.html").then(r=>r.text()).then(h=>{ document.getElementById("site-header").innerHTML = h; });
+    fetch("header.html")
+      .then(r => r.text())
+      .then(h => {
+        const headerEl = document.getElementById("site-header");
+        headerEl.innerHTML = h;
+        // header.html 내부 스크립트 실행
+        headerEl.querySelectorAll("script").forEach((oldScript) => {
+          const newScript = document.createElement("script");
+          if (oldScript.src) newScript.src = oldScript.src;
+          else newScript.textContent = oldScript.textContent;
+          document.body.appendChild(newScript);
+        });
+      });
   </script>
 
   <div class="container">

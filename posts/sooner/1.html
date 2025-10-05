@@ -11,7 +11,16 @@
   <script>
     fetch("../../header.html")
       .then(r => r.text())
-      .then(h => { document.getElementById("site-header").innerHTML = h; });
+      .then(h => {
+        const headerEl = document.getElementById("site-header");
+        headerEl.innerHTML = h;
+        headerEl.querySelectorAll("script").forEach((oldScript) => {
+          const newScript = document.createElement("script");
+          if (oldScript.src) newScript.src = oldScript.src;
+          else newScript.textContent = oldScript.textContent;
+          document.body.appendChild(newScript);
+        });
+      });
   </script>
 
   <div class="container">
@@ -22,7 +31,7 @@
 오랜만에 찾아온 우울감이 싫어서~ -5d
     </p>
 
-    <p class="adjust-token">-10d</p>
+    <p class="adjust-token">-10</p>
     <hr>
     <h3>댓글</h3>
     <div id="comments"></div>
