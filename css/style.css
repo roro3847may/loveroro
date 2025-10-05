@@ -127,6 +127,7 @@ body.later #comments p {
   color: #ffeb99 !important;
 }
 
+/* 강제 오버라이드 */
 body.sooner #comments p {
   color: #ffeb99 !important;
 }
