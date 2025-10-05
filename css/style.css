@@ -112,3 +112,7 @@ body.sooner #comments p .love-word { color: #e0e0e0; }
   .container { padding: 0 1rem; }
   #countdown { font-size: 1.4rem; }
 }
+body.later .site-nav .nav-btn,
+body.later .site-nav .home-btn {
+  color: #ffffff !important;
+}

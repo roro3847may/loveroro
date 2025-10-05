@@ -17,7 +17,7 @@
     depthPrefix = "../";
   }
 
-  document.getElementById("homeLink").href  = depthPrefix + "index.html";
+  document.getElementById("homeLink").href  = depthPrefix ? depthPrefix + "index.html" : "/index.html";
   document.getElementById("minusLink").href = depthPrefix + "posts/sooner/index.html";
   document.getElementById("plusLink").href  = depthPrefix + "posts/later/index.html";
 })();
