@@ -3,30 +3,30 @@
 <head>
   <meta charset="UTF-8">
   <title>+ #3</title>
-  <link rel="stylesheet" href="../../css/style.css">
   <script type="module" src="../../js/firebase.js"></script>
+  <link rel="stylesheet" href="../../css/style.css?v=3">
 </head>
 <body class="later">
   <header id="site-header"></header>
   <script>
     fetch("../../header.html")
       .then(r => r.text())
-      .then(h => {
+      .then(h => {{
         const headerEl = document.getElementById("site-header");
         headerEl.innerHTML = h;
-        headerEl.querySelectorAll("script").forEach((oldScript) => {
+        headerEl.querySelectorAll("script").forEach((oldScript) => {{
           const newScript = document.createElement("script");
           if (oldScript.src) newScript.src = oldScript.src;
           else newScript.textContent = oldScript.textContent;
           document.body.appendChild(newScript);
-        });
-      });
+        }});
+      }});
   </script>
 
   <div class="container">
     <h1>+ #3</h1>
     <p>
-계획을 세우다 보니 우울감이 떠나가서~ +20d
+생각을 편하게 하고 마음을 정리하니 우울이 떠나가서~ +20d
     </p>
 
     <p class="adjust-token">+20d</p>
@@ -82,3 +82,4 @@
   </script>
 </body>
 </html>
+
